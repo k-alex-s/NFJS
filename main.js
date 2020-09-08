@@ -30,15 +30,19 @@ function playGame() {
 }
 
 function startRun(event) {
-  if (event.key !== "F5" && event.key !== "F12") {
+  if (keys.hasOwnProperty(event.key)) {
     event.preventDefault()
+    console.log("keydown", event.key)
     keys[event.key] = true
   }
 }
 
 function stopRun(event) {
-  event.preventDefault()
-  keys[event.key] = false
+  if (keys.hasOwnProperty(event.key)) {
+    event.preventDefault()
+    console.log("keyUp", event.key)
+    keys[event.key] = false
+  }
 }
 document.addEventListener("keydown", startRun)
 document.addEventListener("keyup", stopRun)
